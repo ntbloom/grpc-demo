@@ -27,9 +27,16 @@ proto:
 ### normal build targets ###
 ############################
 
-.PHONY:lint
-lint:
+.PHONY:mypy
+mypy:
+	poetry run mypy .
+
+.PHONY:precommit
+precommit:
 	poetry run pre-commit run --all-files
+
+.PHONY:lint
+lint: precommit mypy
 
 .PHONY:clean
 clean:

@@ -14,6 +14,7 @@
 
 import asyncio
 import logging
+from typing import AsyncGenerator
 
 import grpc
 
@@ -29,7 +30,7 @@ NUMBER_OF_REPLY = 10
 class Greeter(MultiGreeterServicer):
     async def sayHello(
         self, request: HelloRequest, context: grpc.aio.ServicerContext
-    ) -> HelloReply:
+    ) -> AsyncGenerator[HelloReply, None]:
         logging.info("Serving sayHello request %s", request)
         for i in range(NUMBER_OF_REPLY):
             yield HelloReply(message=f"Hello number {i}, {request.name}!")
