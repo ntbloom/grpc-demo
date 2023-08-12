@@ -22,10 +22,13 @@ import grpc.aio
 import hellostreamingworld_pb2
 import typing
 
-_T = typing.TypeVar('_T')
+_T = typing.TypeVar("_T")
 
-class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
-    ...
+class _MaybeAsyncIterator(
+    collections.abc.AsyncIterator[_T],
+    collections.abc.Iterator[_T],
+    metaclass=abc.ABCMeta,
+): ...
 
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
     ...
@@ -33,7 +36,9 @@ class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type:
 class MultiGreeterStub:
     """The greeting service definition."""
 
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
+    def __init__(
+        self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]
+    ) -> None: ...
     sayHello: grpc.UnaryStreamMultiCallable[
         hellostreamingworld_pb2.HelloRequest,
         hellostreamingworld_pb2.HelloReply,
@@ -57,7 +62,12 @@ class MultiGreeterServicer(metaclass=abc.ABCMeta):
         self,
         request: hellostreamingworld_pb2.HelloRequest,
         context: _ServicerContext,
-    ) -> typing.Union[collections.abc.Iterator[hellostreamingworld_pb2.HelloReply], collections.abc.AsyncIterator[hellostreamingworld_pb2.HelloReply]]:
+    ) -> typing.Union[
+        collections.abc.Iterator[hellostreamingworld_pb2.HelloReply],
+        collections.abc.AsyncIterator[hellostreamingworld_pb2.HelloReply],
+    ]:
         """Sends multiple greetings"""
 
-def add_MultiGreeterServicer_to_server(servicer: MultiGreeterServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...
+def add_MultiGreeterServicer_to_server(
+    servicer: MultiGreeterServicer, server: typing.Union[grpc.Server, grpc.aio.Server]
+) -> None: ...

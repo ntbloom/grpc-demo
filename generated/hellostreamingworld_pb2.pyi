@@ -45,7 +45,12 @@ class HelloRequest(google.protobuf.message.Message):
         name: builtins.str = ...,
         num_greetings: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["name", b"name", "num_greetings", b"num_greetings"]) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "name", b"name", "num_greetings", b"num_greetings"
+        ],
+    ) -> None: ...
 
 global___HelloRequest = HelloRequest
 
@@ -62,6 +67,8 @@ class HelloReply(google.protobuf.message.Message):
         *,
         message: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["message", b"message"]) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["message", b"message"]
+    ) -> None: ...
 
 global___HelloReply = HelloReply

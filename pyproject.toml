@@ -8,11 +8,20 @@ packages = [{include = "grpc_example"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-grpcio = "^1.57.0"
-grpcio-tools = "^1.57.0"
-mypy-protobuf = "^3.5.0"
-types-protobuf = "^4.24.0.0"
+grpcio = "*"
+grpcio-tools = "*"
+mypy-protobuf = "*"
+types-protobuf = "*"
 
+[tool.isort]
+profile = "black"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "*"
+flake8 = "*"
+isort = "*"
+black = "*"
+pre-commit = "*"
 
 [build-system]
 requires = ["poetry-core"]

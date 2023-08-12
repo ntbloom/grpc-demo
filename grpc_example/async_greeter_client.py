@@ -11,12 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""The Python AsyncIO implementation of the GRPC hellostreamingworld.MultiGreeter client."""
 
 import asyncio
 import logging
 
 import grpc
+
 from generated import hellostreamingworld_pb2, hellostreamingworld_pb2_grpc
 
 
@@ -26,19 +26,17 @@ async def run() -> None:
 
         # Read from an async generator
         async for response in stub.sayHello(
-            hellostreamingworld_pb2.HelloRequest(name="you")):
-            print("Greeter client received from async generator: " +
-                  response.message)
+            hellostreamingworld_pb2.HelloRequest(name="you")
+        ):
+            print("Greeter client received from async generator: " + response.message)
 
         # Direct read from the stub
-        hello_stream = stub.sayHello(
-            hellostreamingworld_pb2.HelloRequest(name="you"))
+        hello_stream = stub.sayHello(hellostreamingworld_pb2.HelloRequest(name="you"))
         while True:
             response = await hello_stream.read()
             if response == grpc.aio.EOF:
                 break
-            print("Greeter client received from direct read: " +
-                  response.message)
+            print("Greeter client received from direct read: " + response.message)
 
 
 if __name__ == "__main__":

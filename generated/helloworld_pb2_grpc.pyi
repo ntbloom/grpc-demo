@@ -22,10 +22,13 @@ import grpc.aio
 import helloworld_pb2
 import typing
 
-_T = typing.TypeVar('_T')
+_T = typing.TypeVar("_T")
 
-class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
-    ...
+class _MaybeAsyncIterator(
+    collections.abc.AsyncIterator[_T],
+    collections.abc.Iterator[_T],
+    metaclass=abc.ABCMeta,
+): ...
 
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
     ...
@@ -33,7 +36,9 @@ class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type:
 class GreeterStub:
     """The greeting service definition."""
 
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
+    def __init__(
+        self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]
+    ) -> None: ...
     SayHello: grpc.UnaryUnaryMultiCallable[
         helloworld_pb2.HelloRequest,
         helloworld_pb2.HelloReply,
@@ -65,13 +70,20 @@ class GreeterServicer(metaclass=abc.ABCMeta):
         self,
         request: helloworld_pb2.HelloRequest,
         context: _ServicerContext,
-    ) -> typing.Union[helloworld_pb2.HelloReply, collections.abc.Awaitable[helloworld_pb2.HelloReply]]:
+    ) -> typing.Union[
+        helloworld_pb2.HelloReply, collections.abc.Awaitable[helloworld_pb2.HelloReply]
+    ]:
         """Sends a greeting"""
     @abc.abstractmethod
     def SayHelloStreamReply(
         self,
         request: helloworld_pb2.HelloRequest,
         context: _ServicerContext,
-    ) -> typing.Union[collections.abc.Iterator[helloworld_pb2.HelloReply], collections.abc.AsyncIterator[helloworld_pb2.HelloReply]]: ...
+    ) -> typing.Union[
+        collections.abc.Iterator[helloworld_pb2.HelloReply],
+        collections.abc.AsyncIterator[helloworld_pb2.HelloReply],
+    ]: ...
 
-def add_GreeterServicer_to_server(servicer: GreeterServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...
+def add_GreeterServicer_to_server(
+    servicer: GreeterServicer, server: typing.Union[grpc.Server, grpc.aio.Server]
+) -> None: ...
