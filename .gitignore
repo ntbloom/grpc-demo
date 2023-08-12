@@ -1,0 +1,7 @@
+.venv/
+*.swp
+.idea/
+.code/
+__pycache__/
+poetry.lock
+
