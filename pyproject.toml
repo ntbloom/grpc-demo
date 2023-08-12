@@ -9,6 +9,9 @@ packages = [{include = "grpc_example"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 grpcio = "^1.57.0"
+grpcio-tools = "^1.57.0"
+mypy-protobuf = "^3.5.0"
+types-protobuf = "^4.24.0.0"
 
 
 [build-system]
