@@ -43,3 +43,13 @@ clean:
 	rm -rf $(PROTO_DST)/*
 
 
+SRC_DIR=./grpc_example
+
+
+.PHONY:server
+server:
+	poetry run python $(SRC_DIR)/async_greeter_server.py
+
+.PHONY:client
+client:
+	poetry run python $(SRC_DIR)/async_greeter_client.py
